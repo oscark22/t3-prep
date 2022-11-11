@@ -28,4 +28,8 @@ export const exampleRouter = router({
         }
       })
     }),
+  getAllDoggos: publicProcedure
+    .query(({ ctx }) => {
+      return ctx.prisma.dog.findMany();
+    })
 });
