@@ -13,4 +13,19 @@ export const exampleRouter = router({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.example.findMany();
   }),
+  createDoggo: publicProcedure
+    .input(
+      z.object({
+        color: z.string(),
+        name: z.string()
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.dog.create({
+        data: {
+          color: input.color,
+          name: input.name
+        }
+      })
+    }),
 });
